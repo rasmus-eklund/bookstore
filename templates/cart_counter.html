@@ -1,6 +1,9 @@
 {% load cart_tags %}
 
-<a class="relative p-2" href="{% url 'cart_detail' %}">
+<a
+  class="relative p-2 hover:scale-110 transition-transform duration-300"
+  href="{% url 'cart_detail' %}"
+>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -16,7 +19,7 @@
     />
   </svg>
   <span
-    class="absolute top-0 right-0 border rounded-full flex items-center justify-center size-4"
+    class="absolute top-0 right-0 border border-black rounded-full flex items-center justify-center size-4"
     >{% cart_book_count %}</span
   >
 </a>
