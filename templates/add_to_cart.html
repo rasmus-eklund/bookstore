@@ -1,0 +1,9 @@
+<form class="w-full h-9" method="post" action="{% url 'add_to_cart' book.id %}">
+  {% csrf_token %}
+  <button
+    class="h-full w-full text-white rounded-sm border-none bg-red-600 hover:bg-red-800 transition-colors duration-500"
+    type="submit"
+  >
+    {{book.get_price}}
+  </button>
+</form>

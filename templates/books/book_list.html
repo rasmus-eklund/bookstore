@@ -1,0 +1,58 @@
+{% extends 'books/base.html' %} {% block content %} {% load static %}
+<form
+  class="flex p-1 w-full h-14"
+  method="GET"
+  action="{% url 'search_books' %}"
+>
+  <input
+    class="px-2 grow outline-none border rounded-l-md text-lg"
+    type="text"
+    name="q"
+    placeholder="Sök efter din nästa läsupplevelse"
+  />
+  <button
+    class="rounded-r-md p-2 text-lg bg-red-600 hover:bg-red-800 transition-colors duration-500"
+    type="submit"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      class="w-8 h-8 text-white"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+      />
+    </svg>
+  </button>
+</form>
+<ul class="flex flex-wrap gap-4 w-full p-5">
+  {% for book in books %}
+  <li class="flex flex-col w-28">
+    <a
+      class="flex flex-col justify-between grow"
+      href="{% url 'book' book.id %}"
+    >
+      <img
+        class="object-contain max-w-28"
+        src="{{ book.cover_image }}"
+        alt="{{ book.title }}"
+      />
+      <div class="max-h-20">
+        <h2 class="underline text-ellipsis overflow-hidden max-h-12">
+          {{book.title}}
+        </h2>
+        <h3 class="text-sm">{{book.author}}</h3>
+      </div>
+    </a>
+    <div class="flex flex-col justify-end grow">
+      {% include "add_to_cart.html" with book=book %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
